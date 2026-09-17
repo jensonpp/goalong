@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased;
+}
+
+/* Native date/time inputs: keep them full-width, same height as text inputs on iOS */
+input[type="date"],
+input[type="time"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 3rem;
+}
