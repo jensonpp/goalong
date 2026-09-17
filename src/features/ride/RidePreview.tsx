@@ -3,6 +3,7 @@ import { Button } from '../../components/Button'
 import { generateWhatsAppMessage, whatsAppShareUrl } from './whatsapp'
 import type { Ride } from './rideTypes'
 import { formatDate, formatTime } from '../../lib/dates'
+import { track } from '../../lib/analytics'
 
 interface Props {
   ride: Ride
@@ -20,6 +21,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(message)
+      track('message_copied')
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {
@@ -30,6 +32,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
   const webShare = async () => {
     try {
       await navigator.share({ text: message })
+      track('web_share_completed')
       setShared(true)
     } catch {
       // user cancelled – nothing to do
@@ -77,6 +80,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => {
+          track('whatsapp_share_clicked')
           setShared(true)
           setShowMessage(false)
         }}

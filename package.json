@@ -10,6 +10,7 @@
     "test": "tsx src/features/ride/whatsapp.test.ts"
   },
   "dependencies": {
+    "posthog-js": "^1.433.10",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

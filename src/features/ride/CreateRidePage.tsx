@@ -9,6 +9,7 @@ import { RidePreview } from './RidePreview'
 import { RideRepository } from './rideRepository'
 import { FROM_SUGGESTIONS, MAX_SEATS, MIN_SEATS, TO_SUGGESTIONS, type Ride, type RideInput } from './rideTypes'
 import { todayISO, tomorrowISO } from '../../lib/dates'
+import { track } from '../../lib/analytics'
 
 type Errors = Partial<Record<keyof RideInput, string>>
 
@@ -50,6 +51,7 @@ export function CreateRidePage() {
     if (Object.keys(errs).length) return
     const clean: RideInput = { ...input, from: input.from.trim(), to: input.to.trim(), notes: input.notes.trim() }
     setRide(RideRepository.createRide(clean))
+    track('ride_created', { from: clean.from, to: clean.to, seats: clean.availableSeats, pickup_points: clean.pickupPoints.length })
     window.scrollTo(0, 0)
   }
 
