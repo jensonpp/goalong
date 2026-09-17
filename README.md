@@ -20,7 +20,6 @@ Requires Node 20 (see `.nvmrc`).
 
 - Build command: `npm run build`
 - Output directory: `dist`
-- `public/_redirects` routes all paths to `index.html`.
 
 Production: https://goalong.pages.dev
 
