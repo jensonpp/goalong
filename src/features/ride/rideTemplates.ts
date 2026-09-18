@@ -12,7 +12,7 @@ export type SlotStore = Partial<Record<SlotId, RideTemplate>>
 
 export const SLOT_ORDER: SlotId[] = ['morning', 'evening']
 
-export const SLOT_LABEL: Record<SlotId, string> = { morning: '🌅 Morning', evening: '🌆 Evening' }
+export const SLOT_LABEL: Record<SlotId, string> = { morning: 'Morning', evening: 'Evening' }
 
 /** Departure before noon is the morning run, anything later is the evening return. */
 export function slotForTime(hhmm: string): SlotId {

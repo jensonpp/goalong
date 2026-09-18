@@ -18,21 +18,25 @@ export function SavedRideSlots({ slots, isActive, onApply }: Props) {
       <div className="space-y-2">
         {saved.map((t) => {
           const active = isActive(t)
+          const [time, period] = formatTime(t.departureTime).split(' ')
           return (
             <button
               key={t.slot}
               type="button"
               onClick={() => onApply(t)}
-              className={`w-full rounded-2xl px-4 py-3 text-left transition-colors ${
+              className={`flex w-full items-center gap-4 rounded-2xl px-4 py-3 text-left transition-colors ${
                 active ? 'bg-brand-700 text-white' : 'bg-brand-50 text-brand-900 active:bg-brand-100'
               }`}
             >
-              <span className="block text-sm font-semibold">
-                {SLOT_LABEL[t.slot]} · {formatTime(t.departureTime)}
+              <span className="min-w-0 flex-1">
+                <span className="block whitespace-nowrap text-sm font-semibold">
+                  {SLOT_LABEL[t.slot]} · {time}
+                </span>
+                <span className={`block text-sm ${active ? 'text-brand-50' : 'text-brand-800'}`}>
+                  {t.from} → {t.to}
+                </span>
               </span>
-              <span className={`block text-sm ${active ? 'text-brand-50' : 'text-brand-800'}`}>
-                {t.from} → {t.to}
-              </span>
+              <span className="shrink-0 text-3xl font-bold leading-none">{period}</span>
             </button>
           )
         })}

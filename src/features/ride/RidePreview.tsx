@@ -68,7 +68,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
       </button>
 
       <div className="rounded-2xl border border-slate-200 bg-white p-5">
-        <p className="text-sm font-medium text-[#006d39]">Ride created successfully 🚗</p>
+        <p className="text-sm font-medium text-[#006d39]">Ride created successfully ✓</p>
         <h2 className="mt-2 text-xl font-bold">
           {ride.from} <span className="text-brand-700">→</span> {ride.to}
         </h2>
