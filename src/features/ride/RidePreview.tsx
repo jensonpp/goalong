@@ -58,6 +58,15 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
 
   return (
     <div className="space-y-4">
+      <button
+        type="button"
+        onClick={onReset}
+        aria-label="Back to Post a Ride"
+        className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full text-2xl text-brand-700 active:bg-brand-50"
+      >
+        ←
+      </button>
+
       <div className="rounded-2xl border border-slate-200 bg-white p-5">
         <p className="text-sm font-medium text-[#006d39]">Ride created successfully 🚗</p>
         <h2 className="mt-2 text-xl font-bold">
@@ -69,7 +78,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
         <p className="text-slate-700">
           {ride.availableSeats} seat{ride.availableSeats === 1 ? '' : 's'} available
         </p>
-        {ride.pickupPoints.length > 0 && <p className="mt-2 text-sm text-slate-500">Pickup: {ride.pickupPoints.join(' → ')}</p>}
+        {ride.pickupPoints.length > 0 && <p className="mt-2 text-sm text-slate-500">Passing through: {ride.pickupPoints.join(' → ')}</p>}
         {ride.notes && <p className="mt-1 text-sm text-slate-500">{ride.notes}</p>}
       </div>
 
