@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "tsx src/features/ride/whatsapp.test.ts"
+    "test": "tsx src/features/ride/whatsapp.test.ts && tsx src/features/ride/rideTemplates.test.ts"
   },
   "dependencies": {
     "posthog-js": "^1.433.10",

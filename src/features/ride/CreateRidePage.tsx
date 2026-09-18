@@ -6,7 +6,9 @@ import { LocationInput } from '../../components/LocationInput'
 import { SeatStepper } from '../../components/SeatStepper'
 import { PickupPointInput } from '../../components/PickupPointInput'
 import { RidePreview } from './RidePreview'
+import { SavedRideSlots } from './SavedRideSlots'
 import { RideRepository } from './rideRepository'
+import { getSlots, latestSlot, saveSlot, slotForTime, templateToInput, type RideTemplate } from './rideTemplates'
 import { FROM_SUGGESTIONS, MAX_SEATS, MIN_SEATS, TO_SUGGESTIONS, type Ride, type RideInput } from './rideTypes'
 import { todayISO, tomorrowISO } from '../../lib/dates'
 import { track } from '../../lib/analytics'
@@ -23,6 +25,12 @@ const defaultInput = (): RideInput => ({
   notes: '',
 })
 
+/** Last posted ride wins; hardcoded defaults are the first-run fallback. */
+const initialInput = (): RideInput => {
+  const latest = latestSlot(getSlots())
+  return latest ? templateToInput(latest) : defaultInput()
+}
+
 function validate(v: RideInput): Errors {
   const e: Errors = {}
   if (!v.from.trim()) e.from = 'Where are you starting from?'
@@ -35,9 +43,19 @@ function validate(v: RideInput): Errors {
 }
 
 export function CreateRidePage() {
-  const [input, setInput] = useState<RideInput>(defaultInput)
+  const [input, setInput] = useState<RideInput>(initialInput)
   const [errors, setErrors] = useState<Errors>({})
   const [ride, setRide] = useState<Ride | null>(null)
+  const [slots, setSlots] = useState(getSlots)
+
+  const applySlot = (t: RideTemplate) => {
+    setInput(templateToInput(t))
+    setErrors({})
+    track('slot_applied', { slot: t.slot })
+  }
+
+  const matchesInput = (t: RideTemplate) =>
+    t.from === input.from && t.to === input.to && t.departureTime === input.departureTime
 
   const set = <K extends keyof RideInput>(key: K, value: RideInput[K]) => {
     setInput((prev) => ({ ...prev, [key]: value }))
@@ -51,7 +69,15 @@ export function CreateRidePage() {
     if (Object.keys(errs).length) return
     const clean: RideInput = { ...input, from: input.from.trim(), to: input.to.trim(), notes: input.notes.trim() }
     setRide(RideRepository.createRide(clean))
-    track('ride_created', { from: clean.from, to: clean.to, seats: clean.availableSeats, pickup_points: clean.pickupPoints.length })
+    saveSlot(clean)
+    setSlots(getSlots())
+    track('ride_created', {
+      from: clean.from,
+      to: clean.to,
+      seats: clean.availableSeats,
+      pickup_points: clean.pickupPoints.length,
+      slot: slotForTime(clean.departureTime),
+    })
     window.scrollTo(0, 0)
   }
 
@@ -61,7 +87,7 @@ export function CreateRidePage() {
         ride={ride}
         onEdit={() => setRide(null)}
         onReset={() => {
-          setInput(defaultInput())
+          setInput(initialInput())
           setRide(null)
           window.scrollTo(0, 0)
         }}
@@ -80,6 +106,8 @@ export function CreateRidePage() {
           Create your ride details and share them directly to your WhatsApp carpool group.
         </p>
       </div>
+
+      <SavedRideSlots slots={slots} isActive={matchesInput} onApply={applySlot} />
 
       <LocationInput label="From" value={input.from} onChange={(v) => set('from', v)} suggestions={FROM_SUGGESTIONS} placeholder="Starting point" error={errors.from} />
       <LocationInput label="To" value={input.to} onChange={(v) => set('to', v)} suggestions={TO_SUGGESTIONS} placeholder="Destination" error={errors.to} />
