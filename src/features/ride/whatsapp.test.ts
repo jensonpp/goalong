@@ -18,10 +18,10 @@ const msg = generateWhatsAppMessage({
 assert.equal(
   msg,
   `🚗 2 seats available
-📍 Cherthala → Infopark Phase 1
+📍 *Cherthala* → *Infopark Phase 1*
 
-🗓 Tomorrow
-🕗 8:20 AM
+🗓 *Tomorrow*
+🕗 *8:20 AM*
 
 📍 Passing through: Cherthala › Mararikulam › Aroor
 
@@ -36,8 +36,8 @@ const bare = generateWhatsAppMessage({
   availableSeats: 1, pickupPoints: [], notes: '', createdAt: '',
 })
 assert.ok(bare.includes('🚗 1 seat available'))
-assert.ok(bare.includes('🕗 5:05 PM'))
-assert.ok(bare.includes('Fri, 25 Dec'))
+assert.ok(bare.includes('🕗 *5:05 PM*'))
+assert.ok(bare.includes('🗓 *Fri, 25 Dec*'))
 assert.ok(!bare.includes('Passing through'))
 assert.ok(!bare.includes('🛣'))
 

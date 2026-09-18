@@ -59,9 +59,9 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border border-slate-200 bg-white p-5">
-        <p className="text-sm font-medium text-brand-700">Ride created successfully 🚗</p>
+        <p className="text-sm font-medium text-[#006d39]">Ride created successfully 🚗</p>
         <h2 className="mt-2 text-xl font-bold">
-          {ride.from} → {ride.to}
+          {ride.from} <span className="text-brand-700">→</span> {ride.to}
         </h2>
         <p className="mt-2 text-slate-700">
           {formatDate(ride.date)} · {formatTime(ride.departureTime)}
@@ -84,7 +84,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
           setShared(true)
           setShowMessage(false)
         }}
-        className="flex min-h-12 w-full items-center justify-center rounded-xl bg-[#25D366] px-4 font-semibold text-white active:brightness-95"
+        className="flex min-h-12 w-full items-center justify-center rounded-xl bg-black px-4 font-semibold text-white active:brightness-95"
       >
         SHARE TO WHATSAPP
       </a>
@@ -95,7 +95,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
 
       {canWebShare && (
         <Button variant="secondary" onClick={webShare}>
-          Share…
+          SHARE
         </Button>
       )}
 

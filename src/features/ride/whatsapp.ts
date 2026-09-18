@@ -5,10 +5,10 @@ export function generateWhatsAppMessage(ride: Ride): string {
   const seats = `${ride.availableSeats} seat${ride.availableSeats === 1 ? '' : 's'} available`
   const lines = [
     `🚗 ${seats}`,
-    `📍 ${ride.from} → ${ride.to}`,
+    `📍 *${ride.from}* → *${ride.to}*`,
     '',
-    `🗓 ${formatDate(ride.date)}`,
-    `🕗 ${formatTime(ride.departureTime)}`,
+    `🗓 *${formatDate(ride.date)}*`,
+    `🕗 *${formatTime(ride.departureTime)}*`,
   ]
   if (ride.pickupPoints.length) {
     // One line – WhatsApp wraps it itself when the row is too long.
