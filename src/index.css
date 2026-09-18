@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply bg-white text-slate-900 antialiased;
 }
 
 /* Native date/time inputs: keep them full-width, same height as text inputs on iOS */
