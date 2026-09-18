@@ -59,7 +59,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
   return (
     <div className="space-y-4">
       <div className="rounded-2xl border border-slate-200 bg-white p-5">
-        <p className="text-sm font-medium text-teal-700">Ride created successfully 🚗</p>
+        <p className="text-sm font-medium text-brand-700">Ride created successfully 🚗</p>
         <h2 className="mt-2 text-xl font-bold">
           {ride.from} → {ride.to}
         </h2>

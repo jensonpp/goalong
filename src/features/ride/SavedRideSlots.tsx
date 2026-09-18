@@ -24,13 +24,13 @@ export function SavedRideSlots({ slots, isActive, onApply }: Props) {
               type="button"
               onClick={() => onApply(t)}
               className={`w-full rounded-2xl px-4 py-3 text-left transition-colors ${
-                active ? 'bg-teal-700 text-white' : 'bg-teal-50 text-teal-900 active:bg-teal-100'
+                active ? 'bg-brand-700 text-white' : 'bg-brand-50 text-brand-900 active:bg-brand-100'
               }`}
             >
               <span className="block text-sm font-semibold">
                 {SLOT_LABEL[t.slot]} · {formatTime(t.departureTime)}
               </span>
-              <span className={`block text-sm ${active ? 'text-teal-50' : 'text-teal-800'}`}>
+              <span className={`block text-sm ${active ? 'text-brand-50' : 'text-brand-800'}`}>
                 {t.from} → {t.to}
               </span>
             </button>

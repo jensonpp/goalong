@@ -29,7 +29,7 @@ export function PickupPointInput({ value, onChange, suggestions }: Props) {
         <ol className="mb-2 space-y-1">
           {value.map((p, i) => (
             <li key={p} className="flex items-center gap-2">
-              <span className="flex w-5 flex-col items-center text-teal-700">
+              <span className="flex w-5 flex-col items-center text-brand-700">
                 <span className="text-xs">●</span>
                 {i < value.length - 1 && <span className="text-xs leading-none text-slate-300">↓</span>}
               </span>
@@ -67,7 +67,7 @@ export function PickupPointInput({ value, onChange, suggestions }: Props) {
           type="button"
           onClick={() => add(draft)}
           disabled={!draft.trim()}
-          className="min-h-12 shrink-0 rounded-xl bg-teal-50 px-4 font-semibold text-teal-800 active:bg-teal-100 disabled:opacity-40"
+          className="min-h-12 shrink-0 rounded-xl bg-brand-50 px-4 font-semibold text-brand-800 active:bg-brand-100 disabled:opacity-40"
         >
           Add
         </button>

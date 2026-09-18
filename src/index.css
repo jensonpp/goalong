@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Brand scale: 700 is the primary (#0a4dfe), 300 the secondary (#8ce1fd);
+   the rest are tints/shades of those two for fills, focus rings and pressed states. */
+@theme {
+  --color-brand-50: #f0fafe;
+  --color-brand-100: #d9f3fe;
+  --color-brand-300: #8ce1fd;
+  --color-brand-600: #2563fe;
+  --color-brand-700: #0a4dfe;
+  --color-brand-800: #0a3ecb;
+  --color-brand-900: #0a3298;
+}
+
 html {
   -webkit-tap-highlight-color: transparent;
 }
