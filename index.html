@@ -12,8 +12,40 @@
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="preload" as="image" href="/splash.png" />
+    <!-- Splash: painted before React boots, fades itself out. No JS, so it can never get stuck. -->
+    <style>
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: #fff;
+        animation: splash-out 0.35s ease 0.65s forwards;
+      }
+      /* Same 28rem column the app content uses (max-w-md), centered. */
+      #splash::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        max-width: 28rem;
+        margin-inline: auto;
+        background: #0a4dfe url('/splash.png') center / cover no-repeat;
+      }
+      @keyframes splash-out {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #splash {
+          animation-duration: 0.01s;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div id="splash"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

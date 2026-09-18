@@ -42,8 +42,9 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
   if (shared) {
     return (
       <div className="space-y-4 text-center">
-        <div className="text-5xl">✅</div>
-        <h2 className="text-2xl font-bold">Ride posted to WhatsApp</h2>
+        <h2 className="text-sm font-medium">
+          Ride posted to WhatsApp <span className="text-[#006d39]">✓</span>
+        </h2>
         <p className="text-sm text-slate-500">
           {ride.from} → {ride.to} · {formatDate(ride.date)} {formatTime(ride.departureTime)}
         </p>
@@ -62,7 +63,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
         type="button"
         onClick={onReset}
         aria-label="Back to Post a Ride"
-        className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full text-2xl text-brand-700 active:bg-brand-50"
+        className="-ml-2 flex h-10 w-10 items-center justify-center rounded-full text-2xl text-slate-600 active:bg-brand-50"
       >
         ←
       </button>
