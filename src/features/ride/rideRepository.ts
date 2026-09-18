@@ -1,6 +1,6 @@
 import type { Ride, RideInput } from './rideTypes'
 
-const STORAGE_KEY = 'goalong.rides'
+const STORAGE_KEY = 'sameway.rides'
 
 function read(): Ride[] {
   try {

@@ -1,6 +1,6 @@
-# GoAlong
+# SameWay
 
-_Going your way? GoAlong._
+_Going the same way? SameWay._
 
 Phase 1: ride creation assistant for the "Cherthala CarPoolers 2026" WhatsApp group.
 Create a ride → generate a WhatsApp message → share it yourself. No login, no backend.
@@ -21,7 +21,7 @@ Requires Node 20 (see `.nvmrc`).
 - Build command: `npm run build`
 - Output directory: `dist`
 
-Production: https://goalong.pages.dev
+Production: https://sameway.in
 
 ## Structure
 

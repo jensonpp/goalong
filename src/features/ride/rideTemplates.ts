@@ -1,7 +1,7 @@
 import type { RideInput } from './rideTypes'
 import { tomorrowISO } from '../../lib/dates'
 
-const STORAGE_KEY = 'goalong.rideSlots'
+const STORAGE_KEY = 'sameway.rideSlots'
 
 export type SlotId = 'morning' | 'evening'
 

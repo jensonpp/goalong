@@ -1,6 +1,6 @@
 import type { RideInput } from './rideTypes'
 
-const STORAGE_KEY = 'goalong.places'
+const STORAGE_KEY = 'sameway.places'
 const MAX_STORED = 12
 
 export const MAX_SUGGESTIONS = 6

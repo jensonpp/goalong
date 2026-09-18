@@ -1,7 +1,7 @@
 {
-  "name": "GoAlong",
-  "short_name": "GoAlong",
-  "description": "Going your way? GoAlong.",
+  "name": "SameWay",
+  "short_name": "SameWay",
+  "description": "Going the same way? SameWay.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f8fafc",

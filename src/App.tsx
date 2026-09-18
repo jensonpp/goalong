@@ -6,8 +6,8 @@ export default function App() {
       <header className="mb-6 flex items-center gap-3">
         <img src="/icon.svg" alt="" className="h-10 w-10 rounded-xl" />
         <div>
-          <h1 className="text-xl font-bold leading-tight text-teal-800">GoAlong</h1>
-          <p className="text-sm text-slate-500">Going your way? GoAlong.</p>
+          <h1 className="text-xl font-bold leading-tight text-teal-800">SameWay</h1>
+          <p className="text-sm text-slate-500">Going the same way? SameWay.</p>
         </div>
       </header>
       <main>

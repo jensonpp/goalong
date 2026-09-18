@@ -19,8 +19,8 @@ export function generateWhatsAppMessage(ride: Ride): string {
   }
   lines.push(
     '',
-    '> _Posted using GoAlong_',
-    '> _https://goalong.pages.dev/_'
+    '> _Posted using SameWay_',
+    '> _https://sameway.in/_'
   )
   return lines.join('\n')
 }
