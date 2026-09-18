@@ -36,7 +36,7 @@ export function SavedRideSlots({ slots, isActive, onApply }: Props) {
                   {t.from} → {t.to}
                 </span>
               </span>
-              <span className="shrink-0 text-3xl font-bold leading-none">{period}</span>
+              <span className={`shrink-0 text-3xl font-bold leading-none ${active ? '' : 'text-[#d9d9d9]'}`}>{period}</span>
             </button>
           )
         })}
