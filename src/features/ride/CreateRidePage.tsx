@@ -117,7 +117,7 @@ export function CreateRidePage() {
       <div>
         <h2 className="text-2xl font-bold">Post a Ride</h2>
         <p className="mt-1 text-sm text-slate-500">
-          Create your ride details and share them directly to your WhatsApp carpool group.
+          Create your ride details and share them directly to your friends.
         </p>
       </div>
 

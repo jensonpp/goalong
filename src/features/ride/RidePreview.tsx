@@ -113,7 +113,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
 
 function MessageBox({ message }: { message: string }) {
   return (
-    <pre className="whitespace-pre-wrap rounded-2xl bg-[#e7f7ef] p-4 text-left font-sans text-sm text-slate-800 select-all">
+    <pre className="whitespace-pre-wrap rounded-2xl bg-brand-50 p-4 text-left font-sans text-sm text-slate-800 select-all">
       {message}
     </pre>
   )
