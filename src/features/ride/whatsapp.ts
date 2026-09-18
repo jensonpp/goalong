@@ -4,22 +4,24 @@ import { formatDate, formatTime } from '../../lib/dates'
 export function generateWhatsAppMessage(ride: Ride): string {
   const seats = `${ride.availableSeats} seat${ride.availableSeats === 1 ? '' : 's'} available`
   const lines = [
-    '🚗 Ride Available',
-    '',
+    `🚗 ${seats}`,
     `📍 ${ride.from} → ${ride.to}`,
     '',
     `🗓 ${formatDate(ride.date)}`,
     `🕗 ${formatTime(ride.departureTime)}`,
-    '',
-    `💺 ${seats}`,
   ]
   if (ride.pickupPoints.length) {
-    lines.push('', '📍 Passing through:', ...ride.pickupPoints)
+    // One line – WhatsApp wraps it itself when the row is too long.
+    lines.push('', `📍 Passing through: ${ride.pickupPoints.join(' › ')}`)
   }
   if (ride.notes.trim()) {
     lines.push('', `🛣 ${ride.notes.trim()}`)
   }
-  lines.push('', 'Interested? Please DM me privately.', '', '— GoAlong')
+  lines.push(
+    '',
+    '> _Posted using GoAlong_',
+    '> _https://goalong.pages.dev/_'
+  )
   return lines.join('\n')
 }
 

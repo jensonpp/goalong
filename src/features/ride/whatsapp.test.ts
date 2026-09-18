@@ -17,35 +17,28 @@ const msg = generateWhatsAppMessage({
 
 assert.equal(
   msg,
-  `🚗 Ride Available
-
+  `🚗 2 seats available
 📍 Cherthala → Infopark Phase 1
 
 🗓 Tomorrow
 🕗 8:20 AM
 
-💺 2 seats available
-
-📍 Pickup:
-Cherthala
-Mararikulam
-Aroor
+📍 Passing through: Cherthala › Mararikulam › Aroor
 
 🛣 Via NH
 
-Interested? Please DM me privately.
-
-— GoAlong`,
+> _Posted using GoAlong_
+> _https://goalong.pages.dev/_`,
 )
 
 const bare = generateWhatsAppMessage({
   id: '2', from: 'A', to: 'B', date: '2026-12-25', departureTime: '17:05',
   availableSeats: 1, pickupPoints: [], notes: '', createdAt: '',
 })
-assert.ok(bare.includes('💺 1 seat available'))
+assert.ok(bare.includes('🚗 1 seat available'))
 assert.ok(bare.includes('🕗 5:05 PM'))
 assert.ok(bare.includes('Fri, 25 Dec'))
-assert.ok(!bare.includes('Pickup:'))
+assert.ok(!bare.includes('Passing through'))
 assert.ok(!bare.includes('🛣'))
 
 assert.ok(whatsAppShareUrl('a b').startsWith('https://wa.me/?text=a%20b'))
