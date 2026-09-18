@@ -22,7 +22,7 @@ export function PickupPointInput({ value, onChange, suggestions }: Props) {
   return (
     <div>
       <span className="mb-1.5 block text-sm font-medium text-slate-700">
-        Pickup points <span className="font-normal text-slate-400">(optional)</span>
+        Passing through <span className="font-normal text-slate-400">(optional)</span>
       </span>
 
       {value.length > 0 && (

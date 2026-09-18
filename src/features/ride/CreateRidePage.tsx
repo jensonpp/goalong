@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useMemo, useState, type FormEvent } from 'react'
 import { Button } from '../../components/Button'
 import { Field, inputClass } from '../../components/Field'
 import { Chip } from '../../components/Chip'
@@ -9,6 +9,7 @@ import { RidePreview } from './RidePreview'
 import { SavedRideSlots } from './SavedRideSlots'
 import { RideRepository } from './rideRepository'
 import { getSlots, latestSlot, saveSlot, slotForTime, templateToInput, type RideTemplate } from './rideTemplates'
+import { getRecentPlaces, mergeSuggestions, recordPlaces } from './recentPlaces'
 import { FROM_SUGGESTIONS, MAX_SEATS, MIN_SEATS, TO_SUGGESTIONS, type Ride, type RideInput } from './rideTypes'
 import { todayISO, tomorrowISO } from '../../lib/dates'
 import { track } from '../../lib/analytics'
@@ -47,6 +48,17 @@ export function CreateRidePage() {
   const [errors, setErrors] = useState<Errors>({})
   const [ride, setRide] = useState<Ride | null>(null)
   const [slots, setSlots] = useState(getSlots)
+  const [recent, setRecent] = useState(getRecentPlaces)
+
+  // The user's own places lead; the hardcoded lists fill the rest.
+  const suggestions = useMemo(
+    () => ({
+      from: mergeSuggestions(recent, FROM_SUGGESTIONS),
+      to: mergeSuggestions(recent, TO_SUGGESTIONS),
+      pickup: mergeSuggestions(recent, FROM_SUGGESTIONS),
+    }),
+    [recent],
+  )
 
   const applySlot = (t: RideTemplate) => {
     setInput(templateToInput(t))
@@ -71,6 +83,8 @@ export function CreateRidePage() {
     setRide(RideRepository.createRide(clean))
     saveSlot(clean)
     setSlots(getSlots())
+    recordPlaces(clean)
+    setRecent(getRecentPlaces())
     track('ride_created', {
       from: clean.from,
       to: clean.to,
@@ -109,8 +123,8 @@ export function CreateRidePage() {
 
       <SavedRideSlots slots={slots} isActive={matchesInput} onApply={applySlot} />
 
-      <LocationInput label="From" value={input.from} onChange={(v) => set('from', v)} suggestions={FROM_SUGGESTIONS} placeholder="Starting point" error={errors.from} />
-      <LocationInput label="To" value={input.to} onChange={(v) => set('to', v)} suggestions={TO_SUGGESTIONS} placeholder="Destination" error={errors.to} />
+      <LocationInput label="From" value={input.from} onChange={(v) => set('from', v)} suggestions={suggestions.from} placeholder="Starting point" error={errors.from} />
+      <LocationInput label="To" value={input.to} onChange={(v) => set('to', v)} suggestions={suggestions.to} placeholder="Destination" error={errors.to} />
 
       <div>
         <Field label="Date" error={errors.date}>
@@ -131,7 +145,7 @@ export function CreateRidePage() {
       <PickupPointInput
         value={input.pickupPoints}
         onChange={(update) => setInput((prev) => ({ ...prev, pickupPoints: update(prev.pickupPoints) }))}
-        suggestions={FROM_SUGGESTIONS}
+        suggestions={suggestions.pickup}
       />
 
       <Field label="Notes" hint="(optional)">
