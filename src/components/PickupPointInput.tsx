@@ -67,7 +67,7 @@ export function PickupPointInput({ value, onChange, suggestions }: Props) {
           type="button"
           onClick={() => add(draft)}
           disabled={!draft.trim()}
-          className="min-h-12 shrink-0 rounded-xl bg-brand-700 px-4 font-semibold text-white transition-colors active:bg-brand-800 disabled:bg-slate-400"
+          className="min-h-12 shrink-0 rounded-xl bg-brand-700 px-4 font-semibold text-white transition-colors active:bg-brand-800 disabled:bg-[#d9d9d9]"
         >
           Add
         </button>

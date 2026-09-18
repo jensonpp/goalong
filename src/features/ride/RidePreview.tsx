@@ -43,7 +43,7 @@ export function RidePreview({ ride, onEdit, onReset }: Props) {
     return (
       <div className="space-y-4 text-center">
         <h2 className="text-sm font-medium">
-          Ride posted to WhatsApp <span className="text-[#006d39]">✓</span>
+          <span className="text-[#006d39]">Ride posted to WhatsApp ✓</span>
         </h2>
         <p className="text-sm text-slate-500">
           {ride.from} → {ride.to} · {formatDate(ride.date)} {formatTime(ride.departureTime)}
