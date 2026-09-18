@@ -14,7 +14,7 @@ export function generateWhatsAppMessage(ride: Ride): string {
     `💺 ${seats}`,
   ]
   if (ride.pickupPoints.length) {
-    lines.push('', '📍 Pickup:', ...ride.pickupPoints)
+    lines.push('', '📍 Passing through:', ...ride.pickupPoints)
   }
   if (ride.notes.trim()) {
     lines.push('', `🛣 ${ride.notes.trim()}`)
