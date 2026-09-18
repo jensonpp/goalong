@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react'
 import { Button } from '../../components/Button'
 import { Field, inputClass } from '../../components/Field'
 import { Chip } from '../../components/Chip'
@@ -60,6 +60,30 @@ export function CreateRidePage() {
     [recent],
   )
 
+  // The preview screen gets its own history entry, so the browser's Back button
+  // returns to the form instead of leaving the app. keepValues tells the popstate
+  // handler whether this was EDIT RIDE (keep what was typed) or a plain back.
+  const keepValues = useRef(false)
+
+  useEffect(() => {
+    if (!ride) return
+    window.history.pushState({ sameway: 'preview' }, '')
+    const onPop = () => {
+      setRide(null)
+      if (!keepValues.current) setInput(initialInput())
+      keepValues.current = false
+      window.scrollTo(0, 0)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [ride])
+
+  /** Leaves the preview via history, so our own back button and the browser's agree. */
+  const leavePreview = (keep: boolean) => {
+    keepValues.current = keep
+    window.history.back()
+  }
+
   const applySlot = (t: RideTemplate) => {
     setInput(templateToInput(t))
     setErrors({})
@@ -97,15 +121,7 @@ export function CreateRidePage() {
 
   if (ride) {
     return (
-      <RidePreview
-        ride={ride}
-        onEdit={() => setRide(null)}
-        onReset={() => {
-          setInput(initialInput())
-          setRide(null)
-          window.scrollTo(0, 0)
-        }}
-      />
+      <RidePreview ride={ride} onEdit={() => leavePreview(true)} onReset={() => leavePreview(false)} />
     )
   }
 
@@ -117,7 +133,7 @@ export function CreateRidePage() {
       <div>
         <h2 className="text-2xl font-bold">Post a Ride</h2>
         <p className="mt-1 text-sm text-slate-500">
-          Create your ride details and share them directly to your friend circles.
+        Create your ride details and share them directly with your friend circles.
         </p>
       </div>
 
