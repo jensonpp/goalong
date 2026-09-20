@@ -1,6 +1,14 @@
+import { useSyncExternalStore } from 'react'
+import { AboutPage } from './features/about/AboutPage'
 import { CreateRidePage } from './features/ride/CreateRidePage'
 
+const subscribeHash = (cb: () => void) => {
+  window.addEventListener('hashchange', cb)
+  return () => window.removeEventListener('hashchange', cb)
+}
+
 export default function App() {
+  const hash = useSyncExternalStore(subscribeHash, () => window.location.hash)
   return (
     <div className="mx-auto min-h-dvh w-full max-w-md px-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
       <header className="mb-6 flex items-center gap-3">
@@ -10,7 +18,7 @@ export default function App() {
           {/* Sized so its natural width lands on the title's ~92px – no justification, no stretched gaps. */}
           <p className="whitespace-nowrap text-[0.675rem] italic text-slate-500">Going Same Way?</p>
         </div>
-        <details className="relative ml-auto">
+        <details key={hash} className="relative ml-auto">
           <summary aria-label="Menu" className="flex cursor-pointer list-none flex-col gap-1.5 p-2 [&::-webkit-details-marker]:hidden">
             <span className="block h-0.5 w-6 rounded bg-brand-800" />
             <span className="block h-0.5 w-6 rounded bg-brand-800" />
@@ -22,7 +30,7 @@ export default function App() {
         </details>
       </header>
       <main>
-        <CreateRidePage />
+        {hash === '#about' ? <AboutPage /> : <CreateRidePage />}
       </main>
     </div>
   )
