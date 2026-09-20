@@ -8,6 +8,10 @@ export function AboutPage() {
         road, and make everyday commuting a little more sustainable.
       </p>
       <p>It’s a small change in how we travel, but together, it can make a real difference.</p>
+      <section className="border-t border-slate-200 pt-4">
+        <h3 className="font-semibold text-brand-800">Contact Us</h3>
+        <a href="mailto:support.sameway@gmail.com" className="text-sm underline">support.sameway@gmail.com</a>
+      </section>
       <a href="#" className="inline-block text-sm text-brand-800 underline">← Back</a>
     </article>
   )
