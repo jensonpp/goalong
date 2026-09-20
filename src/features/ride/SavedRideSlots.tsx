@@ -29,7 +29,7 @@ export function SavedRideSlots({ slots, isActive, onApply }: Props) {
               }`}
             >
               <span className="min-w-0 flex-1">
-                <span className="block whitespace-nowrap text-sm font-semibold">
+                <span className={`block whitespace-nowrap text-sm font-semibold ${active ? '' : 'text-black'}`}>
                   {SLOT_LABEL[t.slot]} · {time}
                 </span>
                 <span className={`block text-sm ${active ? 'text-brand-50' : 'text-brand-800'}`}>
