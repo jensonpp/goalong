@@ -19,6 +19,8 @@ export function generateWhatsAppMessage(ride: Ride): string {
   }
   lines.push(
     '',
+    'Please DM',
+    '',
     '> _Posted using SameWay_',
     '> _https://sameway.in/_'
   )
