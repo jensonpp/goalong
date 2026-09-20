@@ -1,3 +1,5 @@
+import { ComingSoon } from '../../components/ComingSoon'
+
 export function AboutPage() {
   return (
     <article className="space-y-4 text-slate-700">
@@ -12,7 +14,7 @@ export function AboutPage() {
         <h3 className="font-semibold text-brand-800">Contact Us</h3>
         <a href="mailto:support.sameway@gmail.com" className="text-sm underline">support.sameway@gmail.com</a>
       </section>
-      <a href="#" className="inline-block text-sm text-brand-800 underline">← Back</a>
+      <ComingSoon className="pt-10 justify-start" />
     </article>
   )
 }

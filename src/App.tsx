@@ -12,7 +12,9 @@ export default function App() {
   return (
     <div className="mx-auto min-h-dvh w-full max-w-md px-4 pt-[max(1.25rem,env(safe-area-inset-top))]">
       <header className="mb-6 flex items-center gap-3">
-        <img src="/icon.svg" alt="" className="h-10 w-10 rounded-xl" />
+        <a href="#" aria-label="Home">
+          <img src="/icon.svg" alt="" className="h-10 w-10 rounded-xl" />
+        </a>
         <div className="w-fit">
           <h1 className="text-xl font-bold leading-tight text-brand-800">SameWay</h1>
           {/* Sized so its natural width lands on the title's ~92px – no justification, no stretched gaps. */}
@@ -24,6 +26,7 @@ export default function App() {
             <span className="block h-0.5 w-6 rounded bg-brand-800 transition-transform group-open:-translate-y-1 group-open:-rotate-45" />
           </summary>
           <nav className="absolute right-0 z-10 mt-1 w-40 rounded-xl border border-slate-200 bg-white py-1 shadow-lg">
+            <a href="#" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Home</a>
             <a href="#about" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">About Us</a>
           </nav>
         </details>
