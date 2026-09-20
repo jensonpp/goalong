@@ -10,15 +10,15 @@ import { SavedRideSlots } from './SavedRideSlots'
 import { RideRepository } from './rideRepository'
 import { getSlots, latestSlot, saveSlot, slotForTime, templateToInput, type RideTemplate } from './rideTemplates'
 import { getRecentPlaces, mergeSuggestions, recordPlaces } from './recentPlaces'
-import { FROM_SUGGESTIONS, MAX_SEATS, MIN_SEATS, TO_SUGGESTIONS, type Ride, type RideInput } from './rideTypes'
+import { MAX_SEATS, MIN_SEATS, PLACE_SUGGESTIONS, type Ride, type RideInput } from './rideTypes'
 import { todayISO, tomorrowISO } from '../../lib/dates'
 import { track } from '../../lib/analytics'
 
 type Errors = Partial<Record<keyof RideInput, string>>
 
 const defaultInput = (): RideInput => ({
-  from: 'Cherthala',
-  to: 'Infopark Phase 1',
+  from: 'Ghaziabad',
+  to: 'Sector 62',
   date: tomorrowISO(),
   departureTime: '08:20',
   availableSeats: 2,
@@ -53,9 +53,9 @@ export function CreateRidePage() {
   // The user's own places lead; the hardcoded lists fill the rest.
   const suggestions = useMemo(
     () => ({
-      from: mergeSuggestions(recent, FROM_SUGGESTIONS),
-      to: mergeSuggestions(recent, TO_SUGGESTIONS),
-      pickup: mergeSuggestions(recent, FROM_SUGGESTIONS),
+      from: mergeSuggestions(recent, PLACE_SUGGESTIONS),
+      to: mergeSuggestions(recent, PLACE_SUGGESTIONS),
+      pickup: mergeSuggestions(recent, PLACE_SUGGESTIONS),
     }),
     [recent],
   )

@@ -17,5 +17,4 @@ export type RideInput = Omit<Ride, 'id' | 'createdAt'>
 export const MIN_SEATS = 1
 export const MAX_SEATS = 8
 
-export const FROM_SUGGESTIONS = ['Alappuzha', 'Mararikulam', 'Cherthala','Vayalar', 'Thuravoor', 'Aroor' ]
-export const TO_SUGGESTIONS = ['Infopark', 'Infopark Phase 1', 'Infopark Phase 2', 'SmartCity']
+export const PLACE_SUGGESTIONS = ['Ghaziabad', 'Faridabad', 'Gurugram', 'Greater Noida', 'New Delhi', 'Okhla Bird Sanctuary', 'Surajkund', 'Indirapuram', 'Hapur', 'Dadri']
