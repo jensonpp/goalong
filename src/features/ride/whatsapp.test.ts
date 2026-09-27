@@ -20,8 +20,7 @@ assert.equal(
   `🚗 2 seats available
 📍 *Cherthala* → *Infopark Phase 1*
 
-🗓 *Tomorrow*
-🕗 *8:20 AM*
+🕗 *Tomorrow 8:20 AM*
 
 📍 Passing through: Cherthala › Mararikulam › Aroor
 
@@ -29,8 +28,7 @@ assert.equal(
 
 Please DM
 
-> _Posted using SameWay_
-> _https://sameway.in/_`,
+> _Via https://sameway.in/_`,
 )
 
 const bare = generateWhatsAppMessage({
@@ -38,8 +36,7 @@ const bare = generateWhatsAppMessage({
   availableSeats: 1, pickupPoints: [], notes: '', createdAt: '',
 })
 assert.ok(bare.includes('🚗 1 seat available'))
-assert.ok(bare.includes('🕗 *5:05 PM*'))
-assert.ok(bare.includes('🗓 *Fri, 25 Dec*'))
+assert.ok(bare.includes('🕗 *Fri, 25 Dec 5:05 PM*'))
 assert.ok(!bare.includes('Passing through'))
 assert.ok(!bare.includes('🛣'))
 
