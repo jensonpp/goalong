@@ -17,7 +17,7 @@ export function generateWhatsAppMessage(ride: Ride): string {
   } 
   lines.push(
     '',
-    '_Via https://sameway.in/_'
+    '_Posted using https://sameway.in/_'
   )
   return lines.join('\n')
 }
